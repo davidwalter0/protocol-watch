@@ -4,24 +4,17 @@ import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 
 import { AppComponent } from './app.component';
+import { mqttServiceFactory } from './app.component';
 import { PublishComponent } from './publish.component';
 import { SubscribeComponent } from './subscribe.component';
 
-import {  MqttMessage, MqttModule, MqttService} from 'angular2-mqtt';
-
-export function mqttServiceFactory() {
-  return new MqttService({
-    hostname: 'localhost',
-    port: 9001,
-    path: '/'
-  });
-};
+import { MqttMessage, MqttModule, MqttService } from 'angular2-mqtt';
 
 @NgModule({
   declarations: [
     AppComponent,
     PublishComponent,
-    SubscribeComponent
+    SubscribeComponent,
   ],
   imports: [
     BrowserModule,
@@ -29,7 +22,7 @@ export function mqttServiceFactory() {
     HttpModule,
     MqttModule.forRoot({
       provide: MqttService,
-      useFactory: mqttServiceFactory
+      useFactory: mqttServiceFactory,
     })
   ],
   providers: [],

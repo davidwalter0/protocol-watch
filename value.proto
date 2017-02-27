@@ -4,4 +4,5 @@ package example;
 
 message Value {
   uint64 value = 1;
+  string text  = 2;
 }
