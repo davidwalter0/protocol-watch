@@ -1,147 +1,44 @@
-<div class="container-fluid" *ngIf="(mqtt.state | async) === MqttConnectionState.CONNECTED">
+<div class="container-fluid">
   <div class="row">
-    <div class="col-sm-4">
-      <div class="panel panel-primary">
-        <div class="panel-heading">
-          <div class="panel-title">
-            <ul class="list-inline"> 
-              <li>Connected to MQTT Broker  @{{host}}:{{port}}</li>
-            </ul>
-          </div>
+    <div class="card col-sm-4">
+      <div *ngIf="(mqtt.state | async) === MqttConnectionState.CONNECTED">
+        <div class="card-header card-primary">
+          <ul class="list-inline"> 
+            <li>Connected to MQTT Broker  @{{host}}:{{port}}</li>
+          </ul>
         </div>
       </div>
-      <div class="panel-body">
+      <div *ngIf="(mqtt.state | async) === MqttConnectionState.CONNECTING">
+        <div class="card-header card-warning">
+          <ul class="list-inline"> 
+            <li>Connecting to MQTT Broker  @{{host}}:{{port}}</li>
+          </ul>
+        </div>
+      </div>
+      <div *ngIf="(mqtt.state | async) === MqttConnectionState.CLOSED">
+        <div class="card-header card-danger">
+          <ul class="list-inline"> 
+            <li>Connection closed to MQTT Broker  @{{host}}:{{port}}</li>
+          </ul>
+        </div>
+      </div> <!-- end of header -->
+
+      <div class="card-block">
         <form #statusformData="ngForm" (ngSubmit)="onSubmit(statusformData)">
-          <table class="table">
-            <tbody>
-              <tr>
-                <td>
-                  <input name="host" type="text"    class="form-control" [(ngModel)]="host"    placeholder="host or ip" required>
-                  <p></p>
-                  <input name="port" type="number" class="form-control" [(ngModel)]="port" placeholder="The port number" required>
-                  <p></p>
-                  <button type="button" [disabled]="!statusformData.valid" class="btn btn-primary pull-right" (click)="updateConnection(host, port)"> Update Connection</button>
-                  <p></p>
-                </td>
-              </tr>
-            </tbody>
-          </table>
+          <input name="host" type="text"    class="form-control" [(ngModel)]="host"    placeholder="host or ip" required>
+
+          <input name="port" type="number" class="form-control" [(ngModel)]="port" placeholder="The port number" required>
+
+          <button type="button" [disabled]="!statusformData.valid" class="btn btn-primary float-right" (click)="updateConnection(host, port)"> Update Connection</button>
         </form>
       </div>
     </div>
-    <div class="col-sm-4">
+    <div class="card col-sm-4">
       <subscribe></subscribe>
     </div>
-    <div class="col-sm-4">
+    <div class="card col-sm-4">
       <publish></publish>
     </div>
   </div>
 </div>
-<div class="container-fluid" *ngIf="(mqtt.state | async) === MqttConnectionState.CONNECTING">
-  <div class="row">
-    <div class="col-sm-4">
-      <div class="panel panel-warning table-bordered">
-        <div class="panel-heading">
-          <div class="panel-title">
-            <ul class="list-inline"> 
-              <li>Connecting to MQTT Broker @{{host}}:{{port}}</li>
-            </ul>
-          </div>
-        </div>
-      </div>
-      <div class="panel-body panel-primary">
-        <form #statusformData="ngForm" (ngSubmit)="onSubmit(statusformData)">
-          <table class="table">
-            <tbody>
-              <tr>
-                <td>
-                  <input name="host" type="text"    class="form-control" [(ngModel)]="host"    placeholder="host or ip" required>
-                  <p></p>
-                  <input name="port" type="number" class="form-control" [(ngModel)]="port" placeholder="The port number" required>
-                  <p></p>
-                  <button type="button" [disabled]="!statusformData.valid" class="btn btn-primary pull-right" (click)="updateConnection(host, port)"> Update Connection</button>
-                  <p></p>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        </form>
-      </div>
-    </div>
-    <div class="col-sm-4">
-      <subscribe></subscribe>
-    </div>
-    <div class="col-sm-4">
-      <publish></publish>
-    </div>
-  </div>
-</div>
-<div class="container-fluid" *ngIf="(mqtt.state | async) === MqttConnectionState.CLOSED">
-  <div class="row">
-    <div class="col-sm-4">
-      <div class="panel panel-danger table-bordered">
-        <div class="panel-heading">
-          <div class="panel-title">
-            <ul class="list-inline"> 
-              <li>MQTT Connection Closed    @{{host}}:{{port}}</li>
-            </ul>
-          </div>
-        </div>
-      </div>
-      <div class="panel-body panel-primary">
-        <form #statusformData="ngForm" (ngSubmit)="onSubmit(statusformData)">
-          <table class="table">
-            <tbody>
-              <tr>
-                <td>
-                  <input name="host" type="text"    class="form-control" [(ngModel)]="host"    placeholder="host or ip" required>
-                  <p></p>
-                  <input name="port" type="number" class="form-control" [(ngModel)]="port" placeholder="The port number" required>
-                  <p></p>
-                  <button type="button" [disabled]="!statusformData.valid" class="btn btn-primary pull-right" (click)="updateConnection(host, port)"> Update Connection</button>
-                  <p></p>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        </form>
-      </div>
-    </div>
-    <div class="col-sm-4">
-      <subscribe></subscribe>
-    </div>
-    <div class="col-sm-4">
-      <publish></publish>
-    </div>
-  </div>
-</div>
-
-<!-- <div class="container-fluid" *ngIf="(mqtt.state | async) === MqttConnectionState.CONNECTED"> -->
-<!-- <div class="container-fluid"> -->
-<!--   <div class="row"> -->
-<!--     <div class="col-sm-4"> -->
-<!--       <subscribe></subscribe> -->
-<!--     <\!-- </div> -\-> -->
-<!--   <\!-- </div> -\-> -->
-<!--   <\!-- </div> -\-> -->
-
-<!--   <\!-- <div class="container-fluid" *ngIf="(mqtt.state | async) === MqttConnectionState.CONNECTED"> -\-> -->
-<!--   <\!-- <div class="row"> -\-> -->
-<!--   <\!-- <div class="col-sm-4"> -\-> -->
-<!--     <publish></publish> -->
-<!--   </div> -->
-<!-- </div> -->
-
-<!-- <div class="container-fluid"> -->
-<!--   <div class="row"> -->
-<!--     <div class="col-sm-4"> -->
-<!--       <subscribe></subscribe> -->
-<!--     </div> -->
-<!--     <div class="col-sm-4"> -->
-<!--       <publish></publish> -->
-<!--     </div> -->
-<!--   </div> -->
-<!-- </div> -->
-
-
 
