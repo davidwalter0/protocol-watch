@@ -1,0 +1,28 @@
+<div class="panel panel-primary">
+  <div class="panel-heading">
+    <div class="panel-title">Subscription Topic</div>
+  </div>
+  <div class="panel-body">
+    <table class="table table-primary">
+      <tbody>
+        <tr>
+          <td>
+            <input name="topic" type="text"    class="form-control" [(ngModel)]="topic"    placeholder="subscription topic" required>
+          </td>
+          <td>
+            <button *ngIf="!subscribed" type="button" class="btn btn-primary pull-right" (click)="subscribe(topic)">Subscribe</button>
+            <button *ngIf="subscribed" type="button" class="btn btn-info pull-right" (click)="unsubscribe()">Unsubscribe</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+<div class="panel panel-primary">
+  <div class="panel-heading">
+    <div class="panel-title">Message</div>
+  </div>
+  <div class="panel-body panel-primary">
+    <pre *ngIf="message">{{message | json}}</pre>
+  </div>
+</div>
