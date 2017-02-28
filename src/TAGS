@@ -1,0 +1,40 @@
+
+app/app.component.ts,17
+@Component(3,44
+
+app/models/message.ts,48
+export class Message 1,0
+  topic: string;2,23
+
+app/models/metadata.ts,119
+export class Metadata 1,0
+  host: string;2,24
+  port: number;3,40
+  subscribed: boolean;4,56
+  topic: string;5,79
+
+app/watch.mqtt.service.ts,65
+@Injectable(12,481
+export function mqttServiceFactory(160,4800
+
+app/watch.mqtt.dashboard.component.ts,0
+
+app/watch.mqtt.dashboard.component.html,0
+
+app/watch.mqtt.dashboard.component.css,0
+
+app/subscribe.component.ts,0
+
+app/subscribe.component.html,0
+
+app/rxjs-extensions.ts,0
+
+app/publish.component.ts,0
+
+app/publish.component.html,0
+
+app/app.module.ts,0
+
+app/app.component.spec.ts,0
+
+app/app.component.html,0

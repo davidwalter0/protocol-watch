@@ -1,37 +1,20 @@
-<div class="panel panel-primary">
-  <div class="panel-heading">
-    <div class="panel-title">
-      Required Fields*
-    </div>
+<div class="panel-heading panel-primary panel-bordered">
+  <div class="panel-title panel-primary panel-bordered">
+    Required Fields*
   </div>
-  <div class="panel-body">
-    <form #formData='ngForm' (ngSubmit)="onSubmit(formData)">
-      <span class="error" *ngIf="error">{{ error }}</span>
-      <table class="table">
-        <tbody>
-          <tr>
-            <td>
-              <label for="value">Int</label>
-            </td>
-            <td>
-              <input name="value" type="number" class="form-control" [(ngModel)]="message" placeholder="A uint64 number" required>
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <label for="text">Text</label>
-            </td>
-            <td>
-              <input name="text" type="text"    class="form-control" [(ngModel)]="text"    placeholder="text" required>
-            </td>
-          </tr>
-          <tr>
-            <td colspan="2">
-              <button type="button" [disabled]="!formData.valid" class="btn btn-primary pull-right" (click)="publish(message,text)"> Publish   </button>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-    </form>
-  </div>
+</div>
+<div class="panel-body panel-primary">
+  <form #formData='ngForm' (ngSubmit)="onSubmit(formData)">
+    <span class="error" *ngIf="error">{{ error }}</span>
+    <label for="value">Int</label>
+    <input [disabled]="(watchMqttService.state() | async) != MqttConnectionState.CONNECTED || ! watchMqttService.subscribed" 
+           name="value" type="number" class="form-control" [(ngModel)]="message" placeholder="A uint64 number" required>
+    <p></p>
+    <label for="text">Text</label>
+    <input [disabled]="(watchMqttService.state() | async) != MqttConnectionState.CONNECTED || ! watchMqttService.subscribed" 
+           name="text" type="text"    class="form-control" [(ngModel)]="text"    placeholder="text" required>
+    <br>
+    <button type="submit" [disabled]="!formData.valid || (watchMqttService.state() | async) != MqttConnectionState.CONNECTED || ! watchMqttService.subscribed" 
+            class="btn btn-primary float-bottom float-right autofocus" (click)="publish(message,text)"> Publish   </button>
+  </form>
 </div>
