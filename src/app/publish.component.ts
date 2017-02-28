@@ -12,8 +12,11 @@ import * as root from '../protobuf/value.protobuf.js';
 export class PublishComponent {
   public error: any;
   public MqttConnectionState = MqttConnectionState;
-
+  public topic: string;
   ngOnInit() {
+    this.watchMqttService.topicStream.subscribe((topic) => {
+      this.topic = topic;
+    });
   }
 
   constructor(public watchMqttService: WatchMqttService) {
@@ -21,7 +24,7 @@ export class PublishComponent {
 
   public publish($message: string, $text: string) {
     const buffer = root.example.Value.encode({ value: $message, text: $text }).finish();
-    this.watchMqttService.mqtt.unsafePublish(SubscribeComponent.topic, buffer);
+    this.watchMqttService.mqtt.unsafePublish(this.topic, buffer);
   }
 
   onSubmit(formData) {
