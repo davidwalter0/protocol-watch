@@ -1,50 +1,55 @@
-import { Component, OnDestroy } from '@angular/core';
-import { MqttService, MqttMessage } from 'angular2-mqtt';
+import { Component, OnDestroy, OnInit, AfterViewInit } from '@angular/core';
+import { MqttService, MqttConnectionState, MqttMessage } from 'angular2-mqtt';
 import { Subscription } from 'rxjs/Subscription';
+import { Observable } from 'rxjs/Observable';
+import { BehaviorSubject } from 'rxjs/BehaviorSubject';
+
 import * as root from '../protobuf/value.protobuf.js';
+import { WatchMqttService } from './watch.mqtt.service';
 
 @Component({
   selector: 'subscribe',
   templateUrl: 'subscribe.component.html',
 })
-export class SubscribeComponent implements OnDestroy {
-  private subscription: Subscription;
+export class SubscribeComponent implements OnDestroy, OnInit, AfterViewInit {
+
+  public port: number = WatchMqttService.port;
+  public host: string = WatchMqttService.host;
+
+  public topic: string = '';
   private subscribed: boolean = false;
   private message;
-  public static topic: string = 'angular2-protobuf-mqtt-example';
-  private topic: string = SubscribeComponent.topic;
+  public watchMqttService: WatchMqttService;
+  public MqttConnectionState = MqttConnectionState;
 
-  constructor(private mqtt: MqttService) {
-
+  constructor(watchMqttService: WatchMqttService, public mqtt: MqttService) {
+    this.watchMqttService = watchMqttService;
   }
 
   public subscribe(topic: string) {
-    SubscribeComponent.topic = topic;
     this.topic = topic;
+    this.watchMqttService.subscribe(topic);
     this.subscribed = true;
-    this.subscription = this.mqtt
-      .observe(this.topic)
-      .subscribe((message: MqttMessage) => {
-        try {
-          console.log(message.payload);
-          const value: root.example.Value = root.example.Value.decode(message.payload);
-          this.message = {
-            topic: topic,
-            response: value.toJSON()
-          };
-        } catch (e) {
-          console.error(e);
-        }
-      });
   }
-
   public unsubscribe() {
+    this.watchMqttService.unsubscribe();
     this.subscribed = false;
-    this.message = null;
-    this.subscription ? this.subscription.unsubscribe() : null;
   }
 
   public ngOnDestroy() {
-    this.subscription ? this.subscription.unsubscribe() : null;
+    this.watchMqttService ? this.watchMqttService.unsubscribe() : null;
+  }
+
+  updateConnection(host: string, port: number) {
+    console.log('host', host, 'port', port);
+    WatchMqttService.host = host;
+    WatchMqttService.port = port;
+    this.port = port;
+    this.host = host;
+    this.watchMqttService.updateConnection(host, port);
+  }
+  ngOnInit() {
+  }
+  ngAfterViewInit() {
   }
 }

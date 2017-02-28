@@ -1,23 +1,38 @@
-<div class="card-header card-primary">
+<div *ngIf="(watchMqttService.state() | async) === MqttConnectionState.CONNECTED">
+  <div style="padding: .5em; margin .5em;" class="card-header card-primary">
+    Connected to MQTT Broker  @{{host}}:{{port}}
+  </div>
+</div>
+<div *ngIf="(watchMqttService.state() | async) === MqttConnectionState.CONNECTING">
+  <div style="padding: .5em; margin .5em;" class="card-header card-warning">
+    Connecting to MQTT Broker  @{{host}}:{{port}}
+  </div>
+</div>
+<div *ngIf="(watchMqttService.state() | async) === MqttConnectionState.CLOSED">
+  <div style="padding: .5em; margin .5em;" class="card-header card-danger">
+    Connection closed to MQTT Broker  @{{host}}:{{port}}
+  </div>
+</div> <!-- end of header -->
+<div class="card-block">
+  <form #connectionFormData="ngForm" (ngSubmit)="updateConnection(host,port)">
+    <input name="host" [disabled]="subscribed" type="text"    class="form-control" [(ngModel)]="host"    placeholder="host or ip" required>
+    <input name="port" [disabled]="subscribed" type="number" class="form-control" [(ngModel)]="port" placeholder="The port number" required>
+    <button type="submit" [disabled]="!connectionFormData.valid || subscribed" class="btn btn-primary float-right" (click)="updateConnection(host, port)">Set Connection</button>
+    <br>
+  </form>
+  <br>
+</div>
+
+<div style="padding: .5em; margin .5em;" class="card-header card-primary">
   Subscription Topic
 </div>
 <div class="card-block">
   <form>
-    <p></p>
-    <input name="topic" type="text"    class="form-control" [(ngModel)]="topic"    placeholder="subscription topic" required>
-    <p></p>
-    <button *ngIf="!subscribed" type="button" class="btn btn-primary float-right" (click)="subscribe(topic)">Subscribe</button>
-    <p></p>
-    <button *ngIf="subscribed" type="button" class="btn btn-info float-right" (click)="unsubscribe()">Unsubscribe</button>
-    <p></p>
+    <input name="topic" type="text" [disabled]="subscribed || (watchMqttService.state() | async) != MqttConnectionState.CONNECTED" class="form-control" [(ngModel)]="topic"    placeholder="subscribe to topic" required>
+    <button [disabled]="(watchMqttService.state() | async) != MqttConnectionState.CONNECTED"
+            *ngIf="!subscribed" type="submit" class="btn btn-primary float-right" (click)="subscribe(topic)">Subscribe</button>
+    <button  [disabled]="(watchMqttService.state() | async) != MqttConnectionState.CONNECTED"
+             *ngIf="subscribed" type="submit" class="btn btn-primary float-right" (click)="unsubscribe()">Unsubscribe</button>
   </form>
-</div>
-<br><br>
-<br><br>
-<div class="card-header card-primary">
-  Json formatted Message
-</div>
-<div class="card-block">
-  <pre name="message" *ngIf="message">{{message | json}}</pre>
 </div>
 

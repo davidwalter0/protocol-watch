@@ -1,15 +1,16 @@
-<div class="card-header card-primary">
-  Required Fields*
+<div style="padding: .5em; margin .5em;" class="card-header card-primary">
+  Publish Fields
 </div>
 <div class="card-block">
   <form #formData='ngForm' (ngSubmit)="onSubmit(formData)">
-    <span class="error" *ngIf="error">{{ error }}</span>
+    <!-- <span class="error" *ngIf="error">{{ error }}</span> -->
     <label for="value">Int</label>
-    <input name="value" type="number" class="form-control" [(ngModel)]="message" placeholder="A uint64 number" required>
-    <p>
-      <label for="text">Text</label>
-      <input name="text" type="text"    class="form-control" [(ngModel)]="text"    placeholder="text" required>
-    </p>
-    <button type="button" [disabled]="!formData.valid" class="btn btn-primary float-right" (click)="publish(message,text)"> Publish   </button>
+    <input [disabled]="(watchMqttService.state() | async) != MqttConnectionState.CONNECTED || ! watchMqttService.subscribed" 
+           name="value" type="number" class="form-control" [(ngModel)]="message" placeholder="A uint64 number" required>
+    <label for="text">Text</label>
+    <input [disabled]="(watchMqttService.state() | async) != MqttConnectionState.CONNECTED || ! watchMqttService.subscribed" 
+           name="text" type="text"    class="form-control" [(ngModel)]="text"    placeholder="text" required>
+    <button type="submit" [disabled]="!formData.valid || (watchMqttService.state() | async) != MqttConnectionState.CONNECTED || ! watchMqttService.subscribed" 
+            class="btn btn-primary float-bottom float-right autofocus" (click)="publish(message,text)"> Publish   </button>
   </form>
 </div>
