@@ -35,3 +35,19 @@ npm install
 
 ## Run the app
 Run `ng serve` for a server then navigate to `http://localhost:4200/` to see the example in action.
+
+
+---
+
+![UI / Desktop example](images/screenshot.png)
+
+Some functionality added for configuring and testing / monitoring
+added.
+
+- mqtt host/port input
+- topic input
+- value submission
+- monitors for the current topic
+  - metadata 
+  - message 
+
