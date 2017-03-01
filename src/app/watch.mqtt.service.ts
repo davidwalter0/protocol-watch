@@ -12,7 +12,7 @@ import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 @Injectable()
 export class WatchMqttService implements OnDestroy, OnInit {
   public static host = 'localhost';
-  public static port = 9001;;
+  public static port = 9001;
 
   public host: string = WatchMqttService.host;
   public port: number = WatchMqttService.port;
