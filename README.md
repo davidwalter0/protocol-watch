@@ -39,7 +39,9 @@ Run `ng serve` for a server then navigate to `http://localhost:4200/` to see the
 
 ---
 
-![UI / Desktop example](images/screenshot.png)
+![MDL UI / Desktop example](images/mdl-screenshot.png "branch: material-design-lite")
+
+![UI / Desktop example](images/screenshot.png "branch: cards-with-services" )
 
 Some functionality added for configuring and testing / monitoring
 added.

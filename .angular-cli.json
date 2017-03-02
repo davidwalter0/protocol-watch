@@ -19,12 +19,15 @@
       "tsconfig": "tsconfig.json",
       "prefix": "app",
       "styles": [
-        "../node_modules/bootstrap/dist/css/bootstrap.css",
+        "../node_modules/@angular-mdl/core/scss/mdl/material-design-lite.scss",
+        "../node_modules/material-design-lite/dist/material.deep_purple-indigo.min.css",
+        "../node_modules/material-design-lite/material.css",
         "styles.scss"
       ],
       "scripts": [
         "../node_modules/jquery/dist/jquery.js",
-        "../node_modules/bootstrap/dist/js/bootstrap.js"
+        "../node_modules/material-design-lite/material.js",
+        "../node_modules/@angular-mdl/core/bundle/angular2-mdl.js"
       ],
       "environmentSource": "environments/environment.ts",
       "environments": {

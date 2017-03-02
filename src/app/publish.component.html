@@ -1,18 +1,45 @@
-<div class="card-header card-primary">
-  Required Fields*
-</div>
-<div class="card-block">
-  <form #formData='ngForm' (ngSubmit)="onSubmit(formData)">
-    <span class="error" *ngIf="error">{{ error }}</span>
-    <label for="value">Int</label>
-    <input [disabled]="(watchMqttService.state() | async) != MqttConnectionState.CONNECTED || ! watchMqttService.subscribed" 
-           name="value" type="number" class="form-control" [(ngModel)]="message" placeholder="A uint64 number" required>
-    <p></p>
-    <label for="text">Text</label>
-    <input [disabled]="(watchMqttService.state() | async) != MqttConnectionState.CONNECTED || ! watchMqttService.subscribed" 
-           name="text" type="text"    class="form-control" [(ngModel)]="text"    placeholder="text" required>
-    <br>
-    <button type="submit" [disabled]="!formData.valid || (watchMqttService.state() | async) != MqttConnectionState.CONNECTED || ! watchMqttService.subscribed" 
-            class="btn btn-primary float-bottom float-right autofocus" (click)="publish(message,text)"> Publish   </button>
-  </form>
-</div>
+<mdl-card
+   mdl-cell
+   style="top:3em;"
+   mdl-shadow="2"
+   class="mdl-color--indigo-50">
+  <div class="mdl-card__title mdl--expand">
+    Publish a message
+  </div>
+  <div class="mdl-card__content mdl--expand">
+    <form #formData='ngForm' (ngSubmit)="onSubmit(formData)">
+      <mdl-textfield
+         label="Integer value"
+         [disabled]="(watchMqttService.state() | async) != MqttConnectionState.CONNECTED || ! watchMqttService.subscribed" 
+         name="value" type="number"
+         class="form-control"
+         [(ngModel)]="message"
+         placeholder="A uint64 number"
+         floating-label
+         required>
+      </mdl-textfield>
+      <mdl-textfield
+         label="Text input"
+         [disabled]="(watchMqttService.state() | async) != MqttConnectionState.CONNECTED || ! watchMqttService.subscribed" 
+         name="text" type="text"
+         class="form-control"
+         [(ngModel)]="text"
+         floating-label
+         placeholder="text"
+         >
+      </mdl-textfield>
+      <mdl-card-actions mdl-card-border>
+        <button
+           mdl-button
+           type="submit"
+           [disabled]="!formData.valid || (watchMqttService.state() | async) != MqttConnectionState.CONNECTED || ! watchMqttService.subscribed" 
+           mdl-button-type="raised"
+           mdl-ripple mdl-colored="primary"
+           (click)="publish(message,text)"
+           >
+          Publish
+        </button>
+      </mdl-card-actions>
+    </form>
+  </div>
+</mdl-card>

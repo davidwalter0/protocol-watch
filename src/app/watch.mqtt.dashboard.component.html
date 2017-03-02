@@ -1,7 +1,15 @@
-<div class="card-header card-primary">
-  <div *ngIf="topic">Subscribed to topic: {{ topic }} | Json formatted Message</div> 
-  <div *ngIf="!topic">Unsubscribed | Json formatted Message</div>
-</div>
-<div class="card-block">
-  <pre name="message" *ngIf="message">{{message | json}}</pre>
-</div>
+<mdl-card
+   mdl-cell
+   mdl-grid--no-spacing
+   style="top:3em;"
+   mdl-shadow="2"
+   class="mdl-color--indigo-50">
+  <div class="mdl-card__title mdl--expand">
+    <div *ngIf="topic">Subscribed to topic: {{ topic }} | Json formatted message</div>
+    <div *ngIf="!topic">Unsubscribed | Json formatted message</div>
+  </div>
+  <div class="mdl-card__content mdl--expand">
+    <pre name="message" *ngIf="message">{{message | json}}</pre>
+  </div>
+</mdl-card>
+

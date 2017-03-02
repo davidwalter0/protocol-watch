@@ -1,20 +1,62 @@
-<div class="container">
-  <div class="row">
-    <div class="card col-sm-4" style="margin: 1em;" >
-      <subscribe></subscribe>
-      <br>
-      <publish></publish>
-      <br>
-    </div>
-    <div class="col-sm-7" >
-      <div class="card" style="margin: 1em; min-height: 25em;">
-        <watch-mqtt-dashboard></watch-mqtt-dashboard>
-        <br>
-      </div>
-      <div class="card" style="margin: 1em; min-height: 25em;">
-        <watch-mqtt-metadata></watch-mqtt-metadata>
-      </div>
-    </div>
-  </div>
-</div>
+<script>
+  function close() {
+    var d = document.querySelector('.mdl-layout');
+    d.MaterialLayout.toggleDrawer();
+  }
 
+  document.querySelector('.mdl-layout-drawer').addEventListener('click', close);
+</script>
+
+<mdl-layout  mdl-layout-fixed-header mdl-layout-header-seamed
+             mdl-layout-header-water
+             mdl-layout-mode="waterfall"
+             class="mdl-layout__header--waterfall" >
+  <mdl-layout-header>
+    <mdl-layout-header-row>
+      <mdl-layout-title>{{title}}</mdl-layout-title>
+      <div class="mdl-layout-spacer"></div>
+      <nav class="mdl-navigation">
+        <a skipLocationChange routerLinkActive="active"
+           class="mdl-navigation__link" routerLink="home">Home</a>
+        <a skipLocationChange routerLinkActive="active"
+           class="mdl-navigation__link" routerLink="login">Login</a>
+      </nav>
+    </mdl-layout-header-row>
+  </mdl-layout-header>
+
+  <mdl-layout-drawer
+     mdl-cell--hide-desktop
+     style="top: 10%; height:90%; background: #1A237E; color: #000;"
+     >
+
+    <mdl-layout-title>{{title}}</mdl-layout-title>
+    <nav class="mdl-navigation">
+      <a skipLocationChange routerLinkActive="active"
+         class="mdl-navigation__link" routerLink="home">Home</a>
+      <a skipLocationChange routerLinkActive="active"
+         class="mdl-navigation__link" routerLink="login">Login</a>
+    </nav>
+  </mdl-layout-drawer>
+</mdl-layout>
+
+<mdl-layout-content
+   style="top:5em; width:95%; margin: 1dp; padding: 1dp;">
+  <mdl-layout-drawer
+     mdl-layout--view-desktop
+     style="top: 5em;">
+    <mdl-layout-title>{{title}}</mdl-layout-title>
+    <nav class="mdl-navigation">
+      <a skipLocationChange routerLinkActive="active"
+         class="mdl-navigation__link" routerLink="home">Home</a>
+      <a skipLocationChange routerLinkActive="active"
+         class="mdl-navigation__link" routerLink="login">Login</a>
+    </nav>
+  </mdl-layout-drawer>
+</mdl-layout-content>
+
+<div class="mdl-grid mdl-grid--no-spacing">
+  <subscribe></subscribe>
+  <publish></publish>
+  <watch-mqtt-metadata></watch-mqtt-metadata>
+  <watch-mqtt-dashboard></watch-mqtt-dashboard>
+</div>

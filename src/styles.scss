@@ -1,8 +1,58 @@
-/* You can add global styles to this file, and also import other style files */
-td {
-  vertical-align: middle !important;
+app-root > .loading {
+    margin: 0 auto;
+    text-align: center;
+    display: block;
+    position: relative;
+    top: 25vh;
 }
 
-body {
-  margin-top: 15px;
+app-root  .text-container {
+    text-align: left;
+    display:inline-block;
+    padding: 0 1em;
+}
+
+@media screen and (max-width: 1024px) {
+    .mdl-layout__drawer-button {
+        line-height: 47px;
+    }
+}
+
+.mdl-card {
+    padding: 5px;
+    margin: 5px;
+}
+
+/* mdl-layout > * { */
+/*   color: #FFF; */
+/*   background: #1A237E; */
+/* } */
+
+mdl-layout-header > * {
+  color: #FFF;
+  background: #1A237E;
+}
+
+.mdl-navigation > * {
+  color: #FFF;
+  background: #1A237E;
+}
+
+mdl-layout-drawer > * {
+  color: #FFF;
+  background: #1A237E;
+}
+
+mdl-layout-drawer .mdl-layout__drawer > *,
+mdl-layout-drawer .mdl-layout__drawer.is-visible > * {
+  color: #FFF;
+  background: #1A237E;
+}
+
+
+mdl-layout-header > *  .mdl-navigation .mdl-navigation__link:hover,
+.mdl-layout__drawer .mdl-navigation .mdl-navigation__link:hover {
+  z-index: 1;
+  background: #9FA8DA;
+  color: #000;
 }

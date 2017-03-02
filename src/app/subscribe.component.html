@@ -1,44 +1,98 @@
-<div *ngIf="(watchMqttService.state() | async) === MqttConnectionState.CONNECTED">
-  <div class="card-header card-primary">
-    <ul class="list-inline"> 
-      <li>Connected to MQTT Broker  @{{host}}:{{port}}</li>
-    </ul>
+<mdl-card
+   mdl-cell
+   mdl-grid--no-spacing
+   style="top:3em;"
+   mdl-shadow="2"
+   class="mdl-color--indigo-50">
+  <div *ngIf="(watchMqttService.state() | async) === MqttConnectionState.CONNECTED">
+    <div class="mdl-card__title mdl--expand mdl-card--border mdl-color--indigo-50">
+      Connected to MQTT Broker  @{{host}}:{{port}}
+    </div>
   </div>
-</div>
-<div *ngIf="(watchMqttService.state() | async) === MqttConnectionState.CONNECTING">
-  <div class="card-header card-warning">
-    <ul class="list-inline"> 
-      <li>Connecting to MQTT Broker  @{{host}}:{{port}}</li>
-    </ul>
+  <div *ngIf="(watchMqttService.state() | async) === MqttConnectionState.CONNECTING">
+    <div class="mdl-card__title mdl--expand mdl-card--border mdl-color--indigo-50">
+      Connecting to MQTT Broker  @{{host}}:{{port}}
+    </div>
   </div>
-</div>
-<div *ngIf="(watchMqttService.state() | async) === MqttConnectionState.CLOSED">
-  <div class="card-header card-danger">
-    <ul class="list-inline"> 
-      <li>Connection closed to MQTT Broker  @{{host}}:{{port}}</li>
-    </ul>
+  <div *ngIf="(watchMqttService.state() | async) === MqttConnectionState.CLOSED">
+    <div class="mdl-card__title mdl--expand mdl-card--border mdl-color--indigo-50">
+      Connection closed to MQTT Broker  @{{host}}:{{port}}
+    </div>
+  </div> <!-- end of header -->
+  <div  class="mdl-card__content mdl--expand">
+    <form #connectionFormData="ngForm" (ngSubmit)="updateConnection(host,port)">
+      <mdl-textfield label="Host"
+                     floating-label
+                     name="host"
+                     [disabled]="subscribed"
+                     type="text"
+                     class="form-control"
+                     [(ngModel)]="host"
+                     placeholder="host or ip"
+                     required>
+      </mdl-textfield>
+      <mdl-textfield label="Port number..."
+                     name="port"
+                     type="number"
+                     pattern="[0-9]*(\.[0-9]+)?"
+                     error-msg="Input is not a number!"
+                     [disabled]="subscribed"
+                     [(ngModel)]="port"
+                     floating-label
+                     required
+                     >
+      </mdl-textfield>
+      <mdl-card-actions mdl-card-border>
+        <button mdl-button
+                (click)="updateConnection(host,port)"
+                [disabled]="!connectionFormData.valid"
+                mdl-button-type="raised"
+                mdl-ripple mdl-colored="primary"
+                >
+          Connect
+        </button>
+      </mdl-card-actions>
+
+    </form>
   </div>
-</div> <!-- end of header -->
-<div class="card-block">
-  <form #connectionFormData="ngForm" (ngSubmit)="updateConnection(host,port)">
-    <input name="host" [disabled]="subscribed" type="text"    class="form-control" [(ngModel)]="host"    placeholder="host or ip" required>
-    <p></p>
-    <input name="port" [disabled]="subscribed" type="number" class="form-control" [(ngModel)]="port" placeholder="The port number" required>
-    <p></p>
-    <button type="submit" [disabled]="!connectionFormData.valid || subscribed" class="btn btn-primary float-right" (click)="updateConnection(host, port)">Set Connection</button>
-  </form>
-</div>
-<br>
-<div class="card-header card-primary">
-  Subscription Topic
-</div>
-<div class="card-block">
+
   <form>
-    <input name="topic" type="text" [disabled]="subscribed || (watchMqttService.state() | async) != MqttConnectionState.CONNECTED" class="form-control" [(ngModel)]="topic"    placeholder="subscribe to topic" required>
-    <br>
-    <button [disabled]="(watchMqttService.state() | async) != MqttConnectionState.CONNECTED"
-            *ngIf="!subscribed" type="submit" class="btn btn-primary float-right" (click)="subscribe(topic)">Subscribe</button>
-    <button  [disabled]="(watchMqttService.state() | async) != MqttConnectionState.CONNECTED"
-             *ngIf="subscribed" type="submit" class="btn btn-primary float-right" (click)="unsubscribe()">Unsubscribe</button>
+    <mdl-textfield
+       name="topic"
+       type="text"
+       label="Subscribe to topic"
+       [disabled]="subscribed || (watchMqttService.state() | async) != MqttConnectionState.CONNECTED"
+       class="form-control"
+       [(ngModel)]="topic"
+       placeholder="subscribe to topic"
+       floating-label
+       required
+       >
+    </mdl-textfield>
+    <button
+       mdl-button
+       type="submit"
+       [disabled]="(watchMqttService.state() | async) != MqttConnectionState.CONNECTED"
+       *ngIf="!subscribed"
+       mdl-button-type="raised"
+       mdl-ripple
+       mdl-colored="primary"
+       (click)="subscribe(topic)"
+       >
+      Subscribe
+    </button>
+    <button
+       mdl-button
+       [disabled]="(watchMqttService.state() | async) != MqttConnectionState.CONNECTED"
+       *ngIf="subscribed"
+       type="submit"
+       mdl-button-type="raised"
+       mdl-ripple
+       mdl-colored="primary"
+       (click)="unsubscribe()"
+       >
+      Unsubscribe
+    </button>
   </form>
-</div>
+</mdl-card>
+
