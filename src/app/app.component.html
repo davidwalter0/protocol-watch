@@ -1,43 +1,12 @@
 <div class="container-fluid">
   <div class="row">
-    <div class="card col-sm-4" >
-      <div *ngIf="(mqtt.state | async) === MqttConnectionState.CONNECTED">
-        <div class="card-header card-primary">
-          <ul class="list-inline"> 
-            <li>Connected to MQTT Broker  @{{host}}:{{port}}</li>
-          </ul>
-        </div>
-      </div>
-      <div *ngIf="(mqtt.state | async) === MqttConnectionState.CONNECTING">
-        <div class="card-header card-warning">
-          <ul class="list-inline"> 
-            <li>Connecting to MQTT Broker  @{{host}}:{{port}}</li>
-          </ul>
-        </div>
-      </div>
-      <div *ngIf="(mqtt.state | async) === MqttConnectionState.CLOSED">
-        <div class="card-header card-danger">
-          <ul class="list-inline"> 
-            <li>Connection closed to MQTT Broker  @{{host}}:{{port}}</li>
-          </ul>
-        </div>
-      </div> <!-- end of header -->
-
-      <div class="card-block">
-        <form #statusformData="ngForm" (ngSubmit)="onSubmit(statusformData)">
-          <input name="host" type="text"    class="form-control" [(ngModel)]="host"    placeholder="host or ip" required>
-
-          <input name="port" type="number" class="form-control" [(ngModel)]="port" placeholder="The port number" required>
-
-          <button type="button" [disabled]="!statusformData.valid" class="btn btn-primary float-right" (click)="updateConnection(host, port)"> Update Connection</button>
-        </form>
-      </div>
-    </div>
-    <div class="card col-sm-4" >
+    <div class="card col-sm-4">
       <subscribe></subscribe>
-    </div>
-    <div class="card col-sm-4" >
       <publish></publish>
+    </div>
+    <div class="card col-sm-7">
+      <watch-mqtt-dashboard></watch-mqtt-dashboard>
+      <watch-mqtt-metadata></watch-mqtt-metadata>
     </div>
   </div>
 </div>

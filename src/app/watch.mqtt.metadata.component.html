@@ -1,0 +1,8 @@
+<div class="card-header card-primary">
+  <div *ngIf="topic">Subscribed to topic: {{ topic }} | Json formatted Metadata</div>
+  <div *ngIf="!topic">Unsubscribed | Json formatted Metadata</div>
+</div>
+<div class="card-block">
+  <pre name="metadata" *ngIf="metadata">{{metadata | json}}</pre>
+</div>
+

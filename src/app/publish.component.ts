@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
-import { MqttService, MqttMessage } from 'angular2-mqtt';
+import { MqttService, MqttConnectionState, MqttMessage } from 'angular2-mqtt';
 import { SubscribeComponent } from './subscribe.component';
+import { WatchMqttService } from './watch.mqtt.service';
 
 import * as root from '../protobuf/value.protobuf.js';
 
@@ -9,16 +10,29 @@ import * as root from '../protobuf/value.protobuf.js';
   templateUrl: 'publish.component.html',
 })
 export class PublishComponent {
-  ngOnInit() { }
+  public error: any;
+  public MqttConnectionState = MqttConnectionState;
+  public topic: string;
+  public host: string;
+  public port: number;
+  ngOnInit() {
+    this.watchMqttService.topicStream.subscribe((topic) => {
+      this.topic = topic;
+    });
+    this.watchMqttService.metadataStream.subscribe((metadata) => {
+      if (metadata != undefined) {
+        this.host = metadata.host;
+        this.port = metadata.port;
+      }
+    });
+  }
 
-  state: string = '';
-  error: any;
-
-  constructor(private mqtt: MqttService) { }
+  constructor(public watchMqttService: WatchMqttService) {
+  }
 
   public publish($message: string, $text: string) {
     const buffer = root.example.Value.encode({ value: $message, text: $text }).finish();
-    this.mqtt.unsafePublish(SubscribeComponent.topic, buffer);
+    this.watchMqttService.mqtt.unsafePublish(this.topic, buffer);
   }
 
   onSubmit(formData) {
@@ -28,5 +42,4 @@ export class PublishComponent {
       console.log(this.error);
     }
   }
-
 }

@@ -4,9 +4,11 @@ import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 
 import { AppComponent } from './app.component';
-import { mqttServiceFactory } from './app.component';
 import { PublishComponent } from './publish.component';
 import { SubscribeComponent } from './subscribe.component';
+import { WatchMqttService, mqttServiceFactory } from './watch.mqtt.service';
+import { WatchMqttDashboardComponent } from './watch.mqtt.dashboard.component';
+import { WatchMqttMetadataComponent } from './watch.mqtt.metadata.component';
 
 import { MqttMessage, MqttModule, MqttService } from 'angular2-mqtt';
 
@@ -15,6 +17,8 @@ import { MqttMessage, MqttModule, MqttService } from 'angular2-mqtt';
     AppComponent,
     PublishComponent,
     SubscribeComponent,
+    WatchMqttDashboardComponent,
+    WatchMqttMetadataComponent,
   ],
   imports: [
     BrowserModule,
@@ -25,7 +29,9 @@ import { MqttMessage, MqttModule, MqttService } from 'angular2-mqtt';
       useFactory: mqttServiceFactory,
     })
   ],
-  providers: [],
+  providers: [
+    WatchMqttService,
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
