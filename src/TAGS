@@ -1,7 +1,4 @@
 
-app/app.component.ts,17
-@Component(3,44
-
 app/models/message.ts,48
 export class Message 1,0
   topic: string;2,23
@@ -15,7 +12,13 @@ export class Metadata 1,0
 
 app/watch.mqtt.service.ts,65
 @Injectable(12,481
-export function mqttServiceFactory(160,4800
+export function mqttServiceFactory(161,4830
+
+app/watch.mqtt.metadata.component.ts,0
+
+app/watch.mqtt.metadata.component.html,0
+
+app/watch.mqtt.metadata.component.css,0
 
 app/watch.mqtt.dashboard.component.ts,0
 
@@ -27,13 +30,13 @@ app/subscribe.component.ts,0
 
 app/subscribe.component.html,0
 
-app/rxjs-extensions.ts,0
-
 app/publish.component.ts,0
 
 app/publish.component.html,0
 
 app/app.module.ts,0
+
+app/app.component.ts,0
 
 app/app.component.spec.ts,0
 

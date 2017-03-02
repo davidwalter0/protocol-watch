@@ -1,6 +1,6 @@
 <div class="panel-heading panel-primary panel-bordered">
   <div class="panel-title panel-primary panel-bordered">
-    Required Fields*
+    Publish
   </div>
 </div>
 <div class="panel-body panel-primary">
@@ -9,12 +9,11 @@
     <label for="value">Int</label>
     <input [disabled]="(watchMqttService.state() | async) != MqttConnectionState.CONNECTED || ! watchMqttService.subscribed" 
            name="value" type="number" class="form-control" [(ngModel)]="message" placeholder="A uint64 number" required>
-    <p></p>
     <label for="text">Text</label>
     <input [disabled]="(watchMqttService.state() | async) != MqttConnectionState.CONNECTED || ! watchMqttService.subscribed" 
            name="text" type="text"    class="form-control" [(ngModel)]="text"    placeholder="text" required>
-    <br>
+    <p></p>
     <button type="submit" [disabled]="!formData.valid || (watchMqttService.state() | async) != MqttConnectionState.CONNECTED || ! watchMqttService.subscribed" 
-            class="btn btn-primary float-bottom float-right autofocus" (click)="publish(message,text)"> Publish   </button>
+            class="btn btn-primary float-bottom pull-right autofocus" (click)="publish(message,text)"> Publish   </button>
   </form>
 </div>

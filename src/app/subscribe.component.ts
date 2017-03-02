@@ -16,7 +16,7 @@ export class SubscribeComponent implements OnDestroy, OnInit, AfterViewInit {
   public port: number = WatchMqttService.port;
   public host: string = WatchMqttService.host;
 
-  public static topic: string = 'next';
+  public topic: string = '';
   private subscribed: boolean = false;
   private message;
   public watchMqttService: WatchMqttService;
@@ -27,6 +27,7 @@ export class SubscribeComponent implements OnDestroy, OnInit, AfterViewInit {
   }
 
   public subscribe(topic: string) {
+    this.topic = topic;
     this.watchMqttService.subscribe(topic);
     this.subscribed = true;
   }

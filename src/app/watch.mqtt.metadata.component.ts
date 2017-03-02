@@ -4,11 +4,11 @@ import { Message } from './models/message';
 import { Metadata } from './models/metadata';
 
 @Component({
-  selector: 'watch-mqtt-dashboard',
-  templateUrl: './watch.mqtt.dashboard.component.html',
-  styleUrls: ['./watch.mqtt.dashboard.component.css']
+  selector: 'watch-mqtt-metadata',
+  templateUrl: './watch.mqtt.metadata.component.html',
+  styleUrls: ['./watch.mqtt.metadata.component.css']
 })
-export class WatchMqttDashboardComponent {
+export class WatchMqttMetadataComponent {
   metadata: Metadata;
   message: Message;
   topic: string = "";
