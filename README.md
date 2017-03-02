@@ -1,3 +1,16 @@
+Originally forked from
+[mqtt angular2 example](https://github.com/sclausen/angular2-protobuf-mqtt-example)
+
+Modified with multiple observers for de-coupling components for
+separation of privileges and monitoring of topic, displaying the
+latest queue message.
+
+Communication uses websocket and protobuf.
+
+Original project info:
+
+---
+
 # Using protobuf with mqtt in angular2
 This project is a demonstration of using protobuf with angular2 and mqtt.
 
@@ -39,7 +52,12 @@ Run `ng serve` for a server then navigate to `http://localhost:4200/` to see the
 
 ---
 
-![UI / Desktop example](images/screenshot.png)
+
+![UI|Material Card](images/mdl-screenshot.png "branch: material-design-lite")
+
+![UI|Bootstrap Cards](images/screenshot.png "branch: cards-with-services" )
+
+![UI|Bootstrap 3 Panel](images/panel-screenshot.png "branch: bootstrap-panels" )
 
 Some functionality added for configuring and testing / monitoring
 added.
@@ -51,3 +69,25 @@ added.
   - metadata 
   - message 
 
+---
+
+Different branches have different package.json requirements, for the UI frameworks.
+
+bootstrap 
+
+    "bootstrap": "^3.3.7",
+
+bootstrap-4-alpha-cards
+
+    "bootstrap": "^4.0.0-alpha.6",
+
+material-design-lite branch:
+
+    "@angular-mdl/core": "^3.0.0-beta.1",
+    "material-design-lite": "^1.3.0",
+    "angular2-mdl": "^2.13.2",
+    "material-design-lite": "^1.3.0",
+
+mdl-bootstrap-cards
+
+    "mdbootstrap": "^4.3.0",
