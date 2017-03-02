@@ -13,9 +13,17 @@ export class PublishComponent {
   public error: any;
   public MqttConnectionState = MqttConnectionState;
   public topic: string;
+  public host: string;
+  public port: number;
   ngOnInit() {
     this.watchMqttService.topicStream.subscribe((topic) => {
       this.topic = topic;
+    });
+    this.watchMqttService.metadataStream.subscribe((metadata) => {
+      if (metadata != undefined) {
+        this.host = metadata.host;
+        this.port = metadata.port;
+      }
     });
   }
 

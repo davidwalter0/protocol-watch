@@ -8,6 +8,7 @@ import { PublishComponent } from './publish.component';
 import { SubscribeComponent } from './subscribe.component';
 import { WatchMqttService, mqttServiceFactory } from './watch.mqtt.service';
 import { WatchMqttDashboardComponent } from './watch.mqtt.dashboard.component';
+import { WatchMqttMetadataComponent } from './watch.mqtt.metadata.component';
 
 import { MqttMessage, MqttModule, MqttService } from 'angular2-mqtt';
 
@@ -17,6 +18,7 @@ import { MqttMessage, MqttModule, MqttService } from 'angular2-mqtt';
     PublishComponent,
     SubscribeComponent,
     WatchMqttDashboardComponent,
+    WatchMqttMetadataComponent,
   ],
   imports: [
     BrowserModule,

@@ -12,7 +12,7 @@ import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 @Injectable()
 export class WatchMqttService implements OnDestroy, OnInit {
   public static host = 'localhost';
-  public static port = 9001;;
+  public static port = 9001;
 
   public host: string = WatchMqttService.host;
   public port: number = WatchMqttService.port;
@@ -82,9 +82,9 @@ export class WatchMqttService implements OnDestroy, OnInit {
 
   public subscribe(topic: string) {
     WatchMqttService.topic = topic;
-    this.topicSource.next(topic);
     this.topic = topic;
     this.subscribed = true;
+    this.topicSource.next(topic);
     this.subscription = this.mqtt
       .observe(this.topic)
       .subscribe((message: MqttMessage) => {
@@ -128,6 +128,7 @@ export class WatchMqttService implements OnDestroy, OnInit {
   public unsubscribe() {
     this.subscribed = false;
     this.subscribedSource.next(this.subscribed);
+    this.topicSource.next("");
     this.subscription ? this.subscription.unsubscribe() : null;
   }
 

@@ -5,13 +5,3 @@
 <div class="card-block">
   <pre name="message" *ngIf="message">{{message | json}}</pre>
 </div>
-
-
-<div class="card-header card-primary">
-  <div *ngIf="topic">Subscribed to topic: {{ topic }} | Json formatted Message</div>
-  <div *ngIf="!topic">Unsubscribed | Json formatted Message</div>
-</div>
-<div class="card-block">
-  <pre name="metadata" *ngIf="metadata">{{metadata | json}}</pre>
-</div>
-
