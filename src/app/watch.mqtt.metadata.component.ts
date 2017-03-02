@@ -21,6 +21,10 @@ export class WatchMqttMetadataComponent {
   ngOnInit() {
     this.watchMqttService.topicStream.subscribe((topic) => {
       this.topic = topic;
+      if (this.topic === "") {
+        delete this.message;
+        delete this.metadata;
+      }
     });
     this.watchMqttService.messageStream.subscribe((message) => {
       this.message = message;
