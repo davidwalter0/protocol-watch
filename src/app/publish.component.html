@@ -1,30 +1,32 @@
 <mdl-card
    style="top:3em;"
-   mdl-shadow="4"
+   mdl-shadow="3"
    class="mdl-color--indigo-50 mdl-cell--12-col" >
   <div class="mdl-card__title mdl--expand">
     Publish a message
   </div>
   <div class="mdl-card__content mdl--expand">
-    <form #formData='ngForm' (ngSubmit)="onSubmit(formData)">
+    <form #formData="ngForm" (ngSubmit)="onSubmit(formData)">
       <mdl-textfield
-         label="Integer value"
-         [disabled]="(watchMqttService.state() | async) != MqttConnectionState.CONNECTED || ! watchMqttService.subscribed" 
-         name="value" type="number"
-         class="form-control"
          [(ngModel)]="message"
-         placeholder="A uint64 number"
+         class="form-control"
+         [disabled]="(watchMqttService.state() | async) != MqttConnectionState.CONNECTED || ! watchMqttService.subscribed" 
          floating-label
-         required>
+         label="Integer value"
+         name="value" type="number"
+         placeholder="A uint64 number"
+         required
+         >
       </mdl-textfield>
       <mdl-textfield
-         label="Text input"
-         [disabled]="(watchMqttService.state() | async) != MqttConnectionState.CONNECTED || ! watchMqttService.subscribed" 
-         name="text" type="text"
-         class="form-control"
          [(ngModel)]="text"
+         [disabled]="(watchMqttService.state() | async) != MqttConnectionState.CONNECTED || ! watchMqttService.subscribed" 
+         class="form-control"
          floating-label
+         label="Text input"
+         name="text" type="text"
          placeholder="text"
+         required
          >
       </mdl-textfield>
       <mdl-card-actions mdl-card-border>

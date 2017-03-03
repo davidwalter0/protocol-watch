@@ -25,7 +25,10 @@
   </mdl-layout-header>
 
   <mdl-layout-drawer
-     style="top: 10%; height:90%; background: #1A235E; color: #000;"
+     style="top: 5em; 
+            background: rgb(63,81,181);
+            color: #FFF; 
+            border: 1px solid rgb(63,81,181); "
      mdl-cell--hide-desktop
      >
     <mdl-layout-title>{{title}}</mdl-layout-title>
@@ -36,22 +39,22 @@
          class="mdl-navigation__link" routerLink="login">Login</a>
     </nav>
   </mdl-layout-drawer>
+  <mdl-layout-content>
+    <mdl-layout-drawer
+       mdl-cell--view-desktop
+       style="top: 3em;">
+      <mdl-layout-title>{{title}}</mdl-layout-title>
+      <nav class="mdl-navigation">
+        <a skipLocationChange routerLinkActive="active"
+           class="mdl-navigation__link" routerLink="home">Home</a>
+        <a skipLocationChange routerLinkActive="active"
+           class="mdl-navigation__link" routerLink="login">Login</a>
+      </nav>
+    </mdl-layout-drawer>
+  </mdl-layout-content>
 </mdl-layout>
 
-<mdl-layout-content>
-  <mdl-layout-drawer
-     mdl-cell--view-desktop
-     style="top: 5em;">
-    <mdl-layout-title>{{title}}</mdl-layout-title>
-    <nav class="mdl-navigation">
-      <a skipLocationChange routerLinkActive="active"
-         class="mdl-navigation__link" routerLink="home">Home</a>
-      <a skipLocationChange routerLinkActive="active"
-         class="mdl-navigation__link" routerLink="login">Login</a>
-    </nav>
-  </mdl-layout-drawer>
-</mdl-layout-content>
-<mdl-layout>
+<mdl-layout style="top: 5em;">
   <mdl-layout-content>
     <div class="mdl-grid">
       <div class="mdl-cell mdl-cell--6-col">

@@ -1,3 +1,4 @@
+
 app-root > .loading {
     margin: 0 auto;
     text-align: center;
@@ -9,12 +10,13 @@ app-root > .loading {
 app-root  .text-container {
     text-align: left;
     display:inline-block;
-    padding: 0 1em;
+    padding: 0 5px;
 }
 
 @media screen and (max-width: 1024px) {
     .mdl-layout__drawer-button {
         line-height: 47px;
+        color: #000;
     }
 }
 
@@ -23,36 +25,17 @@ app-root  .text-container {
     margin: 5px;
 }
 
-/* mdl-layout > * { */
-/*   color: #FFF; */
-/*   background: #1A237E; */
-/* } */
-
-mdl-layout-header > * {
+mdl-layout-header > *  .mdl-navigation .mdl-navigation__link,
+.mdl-layout__drawer .mdl-navigation .mdl-navigation__link {
+  z-index: 1;
+  background: rgb(63,81,181);
   color: #FFF;
-  background: #1A235E;
 }
-
-.mdl-navigation > * {
-  color: #FFF;
-  background: #1A235E;
-}
-
-mdl-layout-drawer > * {
-  color: #FFF;
-  background: #1A235E;
-}
-
-mdl-layout-drawer  > *,
-mdl-layout-drawer .mdl-layout__drawer.is-visible > * {
-  color: #FFF;
-  background: #1A235E;
-}
-
 
 mdl-layout-header > *  .mdl-navigation .mdl-navigation__link:hover,
 .mdl-layout__drawer .mdl-navigation .mdl-navigation__link:hover {
   z-index: 1;
   background: #AFA8EA;
-  color: #000;
+  color: #FFF;
 }
+
