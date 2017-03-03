@@ -10,6 +10,51 @@ Communication uses websocket and protobuf.
 Original project info:
 
 ---
+## Screen captures of example 
+
+#### angular2 / mqtt / protocol buffer monitor application
+
+![UI|Material Card](images/material-design-lite-screenshot.png "branch: material-design-lite")
+
+![UI|Bootstrap Cards](images/screenshot.png "branch: cards-with-services" )
+
+![UI|Bootstrap 3 Panel](images/panel-screenshot.png "branch: bootstrap-panels" )
+
+Some functionality added for configuring and testing / monitoring
+added.
+
+- mqtt host/port input
+- topic input
+- value submission
+- monitors for the current topic
+  - metadata 
+  - message 
+
+---
+## Branches per UI test 
+
+Different branches have different package.json requirements, for the UI frameworks.
+
+bootstrap 
+
+    "bootstrap": "^3.3.7",
+
+bootstrap-4-alpha-cards
+
+    "bootstrap": "^4.0.0-alpha.6",
+
+material-design-lite branch:
+
+    "@angular-mdl/core": "^3.0.0-beta.1",
+    "material-design-lite": "^1.3.0",
+    "angular2-mdl": "^2.13.2",
+    "material-design-lite": "^1.3.0",
+
+mdl-bootstrap-cards
+
+    "mdbootstrap": "^4.3.0",
+
+---
 
 # Using protobuf with mqtt in angular2
 This project is a demonstration of using protobuf with angular2 and mqtt.
@@ -50,44 +95,3 @@ npm install
 Run `ng serve` for a server then navigate to `http://localhost:4200/` to see the example in action.
 
 
----
-
-
-![UI|Material Card](images/material-design-lite-screenshot.png "branch: material-design-lite")
-
-![UI|Bootstrap Cards](images/screenshot.png "branch: cards-with-services" )
-
-![UI|Bootstrap 3 Panel](images/panel-screenshot.png "branch: bootstrap-panels" )
-
-Some functionality added for configuring and testing / monitoring
-added.
-
-- mqtt host/port input
-- topic input
-- value submission
-- monitors for the current topic
-  - metadata 
-  - message 
-
----
-
-Different branches have different package.json requirements, for the UI frameworks.
-
-bootstrap 
-
-    "bootstrap": "^3.3.7",
-
-bootstrap-4-alpha-cards
-
-    "bootstrap": "^4.0.0-alpha.6",
-
-material-design-lite branch:
-
-    "@angular-mdl/core": "^3.0.0-beta.1",
-    "material-design-lite": "^1.3.0",
-    "angular2-mdl": "^2.13.2",
-    "material-design-lite": "^1.3.0",
-
-mdl-bootstrap-cards
-
-    "mdbootstrap": "^4.3.0",
