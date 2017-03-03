@@ -25,6 +25,14 @@ app-root  .text-container {
     margin: 5px;
 }
 
+.sliding-drawer {
+    top: 9%; 
+    background: rgb(63,81,181);
+    color: #FFF; 
+    border: 1px solid rgb(63,81,181);
+    height: 90%;
+}
+
 mdl-layout-header > *  .mdl-navigation .mdl-navigation__link,
 .mdl-layout__drawer .mdl-navigation .mdl-navigation__link {
   z-index: 1;
