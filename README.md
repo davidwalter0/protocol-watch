@@ -53,7 +53,7 @@ Run `ng serve` for a server then navigate to `http://localhost:4200/` to see the
 ---
 
 
-![UI|Material Card](images/mdl-screenshot.png "branch: material-design-lite")
+![UI|Material Card](images/material-design-lite-screenshot.png "branch: material-design-lite")
 
 ![UI|Bootstrap Cards](images/screenshot.png "branch: cards-with-services" )
 
