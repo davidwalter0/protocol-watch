@@ -1,9 +1,7 @@
 <mdl-card
-   mdl-cell
-   mdl-grid--no-spacing
    style="top:3em;"
-   mdl-shadow="2"
-   class="mdl-color--indigo-50">
+   mdl-shadow="4"
+   class="mdl-color--indigo-50 mdl-cell--12-col" >
   <div class="mdl-card__title mdl--expand">
     <div *ngIf="topic">Subscribed to topic: {{ topic }} | Json formatted message</div>
     <div *ngIf="!topic">Unsubscribed | Json formatted message</div>

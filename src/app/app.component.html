@@ -7,10 +7,10 @@
   document.querySelector('.mdl-layout-drawer').addEventListener('click', close);
 </script>
 
-<mdl-layout  mdl-layout-fixed-header mdl-layout-header-seamed
-             mdl-layout-header-water
-             mdl-layout-mode="waterfall"
-             class="mdl-layout__header--waterfall" >
+<mdl-layout
+   mdl-layout-fixed-header
+   mdl-layout-mode="scroll"
+   >
   <mdl-layout-header>
     <mdl-layout-header-row>
       <mdl-layout-title>{{title}}</mdl-layout-title>
@@ -25,10 +25,9 @@
   </mdl-layout-header>
 
   <mdl-layout-drawer
+     style="top: 10%; height:90%; background: #1A235E; color: #000;"
      mdl-cell--hide-desktop
-     style="top: 10%; height:90%; background: #1A237E; color: #000;"
      >
-
     <mdl-layout-title>{{title}}</mdl-layout-title>
     <nav class="mdl-navigation">
       <a skipLocationChange routerLinkActive="active"
@@ -39,10 +38,9 @@
   </mdl-layout-drawer>
 </mdl-layout>
 
-<mdl-layout-content
-   style="top:5em; width:95%; margin: 1dp; padding: 1dp;">
+<mdl-layout-content>
   <mdl-layout-drawer
-     mdl-layout--view-desktop
+     mdl-cell--view-desktop
      style="top: 5em;">
     <mdl-layout-title>{{title}}</mdl-layout-title>
     <nav class="mdl-navigation">
@@ -53,10 +51,19 @@
     </nav>
   </mdl-layout-drawer>
 </mdl-layout-content>
-
-<div class="mdl-grid mdl-grid--no-spacing">
-  <subscribe></subscribe>
-  <publish></publish>
-  <watch-mqtt-metadata></watch-mqtt-metadata>
-  <watch-mqtt-dashboard></watch-mqtt-dashboard>
-</div>
+<mdl-layout>
+  <mdl-layout-content>
+    <div class="mdl-grid">
+      <div class="mdl-cell mdl-cell--6-col">
+        <subscribe></subscribe>
+        <p></p>
+        <publish></publish>
+      </div>
+      <div class="mdl-cell mdl-cell--6-col">
+        <watch-mqtt-metadata></watch-mqtt-metadata>
+        <p></p>
+        <watch-mqtt-dashboard></watch-mqtt-dashboard>
+      </div>
+    </div>
+  </mdl-layout-content>
+</mdl-layout>

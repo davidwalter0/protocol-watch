@@ -27,9 +27,11 @@ export class SubscribeComponent implements OnDestroy, OnInit, AfterViewInit {
   }
 
   public subscribe(topic: string) {
-    this.topic = topic;
-    this.watchMqttService.subscribe(topic);
-    this.subscribed = true;
+    if (topic !== "") {
+      this.topic = topic;
+      this.watchMqttService.subscribe(topic);
+      this.subscribed = true;
+    }
   }
   public unsubscribe() {
     this.watchMqttService.unsubscribe();

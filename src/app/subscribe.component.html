@@ -1,9 +1,7 @@
 <mdl-card
-   mdl-cell
-   mdl-grid--no-spacing
    style="top:3em;"
-   mdl-shadow="2"
-   class="mdl-color--indigo-50">
+   mdl-shadow="4"
+   class="mdl-color--indigo-50 mdl-cell--12-col" >
   <div *ngIf="(watchMqttService.state() | async) === MqttConnectionState.CONNECTED">
     <div class="mdl-card__title mdl--expand mdl-card--border mdl-color--indigo-50">
       Connected to MQTT Broker  @{{host}}:{{port}}
@@ -48,6 +46,7 @@
                 [disabled]="!connectionFormData.valid"
                 mdl-button-type="raised"
                 mdl-ripple mdl-colored="primary"
+                float-right
                 >
           Connect
         </button>
@@ -78,6 +77,7 @@
        mdl-ripple
        mdl-colored="primary"
        (click)="subscribe(topic)"
+       float-right
        >
       Subscribe
     </button>
@@ -90,9 +90,9 @@
        mdl-ripple
        mdl-colored="primary"
        (click)="unsubscribe()"
+       float-right
        >
       Unsubscribe
     </button>
   </form>
 </mdl-card>
-

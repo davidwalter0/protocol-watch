@@ -81,48 +81,51 @@ export class WatchMqttService implements OnDestroy, OnInit {
   }
 
   public subscribe(topic: string) {
-    WatchMqttService.topic = topic;
-    this.topic = topic;
-    this.subscribed = true;
-    this.topicSource.next(topic);
-    this.subscription = this.mqtt
-      .observe(this.topic)
-      .subscribe((message: MqttMessage) => {
-        try {
-          console.log(message.payload);
-          const value: root.example.Value = root.example.Value.decode(message.payload);
-          //////////////////////////////////////////
-          // message
-          //////////////////////////////////////////
-          this.message = {
-            topic: topic,
-            response: value.toJSON()
-          };
-          // publish for downstream consumers
-          this.messageSource.next(this.message);
-          console.log(JSON.stringify(this.message));
-          //////////////////////////////////////////
-          // metadata
-          //////////////////////////////////////////
-          let metadata = {
-            host: this.host,
-            port: this.port,
-            subscribed: this.subscribed,
-            topic: this.topic,
-            message: {
-              topic: this.topic,
-              response: value.toJSON()
-            }
-          }
+    if (topic !== "") {
 
-          this.metadataSource.next(<Metadata>metadata);
-          console.log(JSON.stringify(metadata));
-          this.metadata = <Metadata>metadata;
-          this.subscribedSource.next(this.subscribed);
-        } catch (e) {
-          console.error(e);
-        }
-      });
+      WatchMqttService.topic = topic;
+      this.topic = topic;
+      this.subscribed = true;
+      this.topicSource.next(topic);
+      this.subscription = this.mqtt
+        .observe(this.topic)
+        .subscribe((message: MqttMessage) => {
+          try {
+            console.log(message.payload);
+            const value: root.example.Value = root.example.Value.decode(message.payload);
+            //////////////////////////////////////////
+            // message
+            //////////////////////////////////////////
+            this.message = {
+              topic: topic,
+              response: value.toJSON()
+            };
+            // publish for downstream consumers
+            this.messageSource.next(this.message);
+            console.log(JSON.stringify(this.message));
+            //////////////////////////////////////////
+            // metadata
+            //////////////////////////////////////////
+            let metadata = {
+              host: this.host,
+              port: this.port,
+              subscribed: this.subscribed,
+              topic: this.topic,
+              message: {
+                topic: this.topic,
+                response: value.toJSON()
+              }
+            }
+
+            this.metadataSource.next(<Metadata>metadata);
+            console.log(JSON.stringify(metadata));
+            this.metadata = <Metadata>metadata;
+            this.subscribedSource.next(this.subscribed);
+          } catch (e) {
+            console.error(e);
+          }
+        });
+    }
   }
 
   public unsubscribe() {
