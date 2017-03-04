@@ -11,7 +11,7 @@ import { WatchMqttService } from './watch.mqtt.service';
   selector: 'subscribe',
   templateUrl: 'subscribe.component.html',
 })
-export class SubscribeComponent implements OnDestroy, OnInit, AfterViewInit {
+export class SubscribeComponent implements OnInit, OnDestroy, AfterViewInit {
 
   public port: number = WatchMqttService.port;
   public host: string = WatchMqttService.host;
@@ -39,6 +39,7 @@ export class SubscribeComponent implements OnDestroy, OnInit, AfterViewInit {
   }
 
   public ngOnDestroy() {
+    console.log('ngOnDestroy::SubscribeComponent');
     this.watchMqttService ? this.watchMqttService.unsubscribe() : null;
   }
 
@@ -51,6 +52,7 @@ export class SubscribeComponent implements OnDestroy, OnInit, AfterViewInit {
     this.watchMqttService.updateConnection(host, port);
   }
   ngOnInit() {
+    console.log('ngOnInit::SubscribeComponent');
   }
   ngAfterViewInit() {
   }

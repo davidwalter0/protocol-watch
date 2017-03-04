@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { WatchMqttService } from './watch.mqtt.service';
 import { Message } from './models/message';
 import { Metadata } from './models/metadata';
@@ -8,7 +8,7 @@ import { Metadata } from './models/metadata';
   templateUrl: './watch.mqtt.metadata.component.html',
   styleUrls: ['./watch.mqtt.metadata.component.css']
 })
-export class WatchMqttMetadataComponent {
+export class WatchMqttMetadataComponent implements OnInit, OnDestroy {
   metadata: Metadata;
   message: Message;
   topic: string = "";
@@ -18,7 +18,12 @@ export class WatchMqttMetadataComponent {
     this.watchMqttService = watchMqttService;
   }
 
+  ngOnDestroy() {
+    console.log('ngOnDestroy::WatchMqttMetadataComponent');
+  }
+
   ngOnInit() {
+    console.log('ngOnInit::WatchMqttMetadataComponent')
     this.watchMqttService.topicStream.subscribe((topic) => {
       this.topic = topic;
       if (this.topic === "") {

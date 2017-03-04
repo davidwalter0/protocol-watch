@@ -1,4 +1,10 @@
 
+a:before {
+  /* content: "\E315"; */
+  font-family: 'Material Icons';
+  vertical-align: bottom;
+}
+
 app-root > .loading {
     margin: 0 auto;
     text-align: center;

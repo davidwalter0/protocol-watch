@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { WatchMqttService } from './watch.mqtt.service';
 import { Message } from './models/message';
 import { Metadata } from './models/metadata';
@@ -8,7 +8,7 @@ import { Metadata } from './models/metadata';
   templateUrl: './watch.mqtt.dashboard.component.html',
   styleUrls: ['./watch.mqtt.dashboard.component.css']
 })
-export class WatchMqttDashboardComponent {
+export class WatchMqttDashboardComponent implements OnInit, OnDestroy {
   metadata: Metadata;
   message: Message;
   topic: string = "";
@@ -18,7 +18,13 @@ export class WatchMqttDashboardComponent {
     this.watchMqttService = watchMqttService;
   }
 
+  ngOnDestroy() {
+    console.log('ngOnDestroy::WatchMqttDashboardComponent');
+  }
+
+
   ngOnInit() {
+    console.log('ngOnInit::WatchMqttDashboardComponent');
     this.watchMqttService.topicStream.subscribe((topic) => {
       this.topic = topic;
       if (this.topic === "") {

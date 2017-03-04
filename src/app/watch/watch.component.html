@@ -1,0 +1,31 @@
+<mdl-layout>
+  <mdl-layout-content style="top: 5em;">
+    <div class="mdl-tabs mdl-js-tabs mdl-js-ripple-effect">
+      <div class="mdl-tabs__tab-bar">
+        <a [routerLink]="['/pubsub-watch']"  class="mdl-navigation__link mdl-tabs__tab is-active">
+          <mdl-icon class="mdl-color-text--primary">tab</mdl-icon>
+          Subscribe / Publish / Watch
+        </a>
+        <a [routerLink]="['/pubsub']" class="mdl-navigation__link mdl-tabs__tab  is-active">
+          <mdl-icon class="mdl-color-text--primary">tab</mdl-icon>
+          Subscribe / Publish
+        </a>
+        <a [routerLink]="['/watch']"  class="mdl-navigation__link mdl-tabs__tab  is-active">
+          <mdl-icon class="mdl-color-text--primary">tab</mdl-icon>
+          Watch
+        </a>
+        <div class="mdl-layout-spacer"></div>
+      </div>
+    </div>
+    <div class="mdl-tabs__panel">
+      <div class="mdl-grid">
+        <div class="mdl-cell mdl-cell--6-col">
+          <watch-mqtt-metadata></watch-mqtt-metadata>
+        </div>
+        <div class="mdl-cell mdl-cell--6-col">
+          <watch-mqtt-dashboard></watch-mqtt-dashboard>
+        </div>
+      </div>
+    </div>
+  </mdl-layout-content>
+</mdl-layout>

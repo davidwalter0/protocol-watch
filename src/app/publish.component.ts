@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { MqttService, MqttConnectionState, MqttMessage } from 'angular2-mqtt';
 import { SubscribeComponent } from './subscribe.component';
 import { WatchMqttService } from './watch.mqtt.service';
@@ -9,13 +9,14 @@ import * as root from '../protobuf/value.protobuf.js';
   selector: 'publish',
   templateUrl: 'publish.component.html',
 })
-export class PublishComponent {
+export class PublishComponent implements OnInit, OnDestroy {
   public error: any;
   public MqttConnectionState = MqttConnectionState;
   public topic: string;
   public host: string;
   public port: number;
   ngOnInit() {
+    console.log('ngOnInit::PublishComponent');
     this.watchMqttService.topicStream.subscribe((topic) => {
       this.topic = topic;
     });
@@ -33,6 +34,10 @@ export class PublishComponent {
   public publish($message: string, $text: string) {
     const buffer = root.example.Value.encode({ value: $message, text: $text }).finish();
     this.watchMqttService.mqtt.unsafePublish(this.topic, buffer);
+  }
+
+  ngOnDestroy() {
+    console.log('ngOnDestroy::PublishComponent');
   }
 
   onSubmit(formData) {

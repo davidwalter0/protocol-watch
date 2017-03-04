@@ -13,56 +13,82 @@
    >
   <mdl-layout-header>
     <mdl-layout-header-row>
-      <mdl-layout-title>{{title}}</mdl-layout-title>
+      <mdl-layout-title>Site Title</mdl-layout-title>
       <div class="mdl-layout-spacer"></div>
       <nav class="mdl-navigation">
-        <a skipLocationChange routerLinkActive="active"
-           class="mdl-navigation__link" routerLink="home">Home</a>
-        <a skipLocationChange routerLinkActive="active"
-           class="mdl-navigation__link" routerLink="login">Login</a>
+        <a routerLinkActive="active"
+           class="mdl-navigation__link" routerLink="">Home</a>
+        <a skipLocationChange="true"
+           *ngIf="authorized()"
+           routerLinkActive="active"
+           (click)="logout()"
+           class="mdl-navigation__link"
+           aria-hidden="true">
+          Logout
+        </a>
+        <a skipLocationChange="true"
+           *ngIf="!authorized()"
+           routerLinkActive="active"
+           (click)="loginGoogle()"
+           class="mdl-navigation__link"
+           aria-hidden="true">
+          Login
+        </a>
       </nav>
     </mdl-layout-header-row>
+
   </mdl-layout-header>
 
   <mdl-layout-drawer class="sliding-drawer"
      mdl-cell--hide-desktop
      >
-    <mdl-layout-title>{{title}}</mdl-layout-title>
+    <mdl-layout-title>Site Title</mdl-layout-title>
     <nav class="mdl-navigation">
-      <a skipLocationChange routerLinkActive="active"
-         class="mdl-navigation__link" routerLink="home">Home</a>
-      <a skipLocationChange routerLinkActive="active"
-         class="mdl-navigation__link" routerLink="login">Login</a>
+      <a routerLinkActive="active"
+         class="mdl-navigation__link" routerLink="">Home</a>
+      <a skipLocationChange="true"
+         *ngIf="authorized()"
+         routerLinkActive="active"
+         (click)="logout()"
+         class="mdl-navigation__link"
+         aria-hidden="true">
+        Logout
+      </a>
+      <a skipLocationChange="true"
+         *ngIf="!authorized()"
+         routerLinkActive="active"
+         (click)="loginGoogle()"
+         class="mdl-navigation__link"
+         aria-hidden="true">
+        Login
+      </a>
+
     </nav>
   </mdl-layout-drawer>
   <mdl-layout-content>
     <mdl-layout-drawer
        mdl-cell--view-desktop
        style="top: 3em;">
-      <mdl-layout-title>{{title}}</mdl-layout-title>
+      <mdl-layout-title>Site Title</mdl-layout-title>
       <nav class="mdl-navigation">
-        <a skipLocationChange routerLinkActive="active"
-           class="mdl-navigation__link" routerLink="home">Home</a>
-        <a skipLocationChange routerLinkActive="active"
-           class="mdl-navigation__link" routerLink="login">Login</a>
+        <a routerLinkActive="active"
+           class="mdl-navigation__link" routerLink="">Home</a>
+        <a skipLocationChange="true"
+           routerLinkActive="active"
+           (click)="logout()"
+           class="mdl-navigation__link"
+           aria-hidden="true">
+          Logout
+        </a>
+        <a skipLocationChange="true"
+           routerLinkActive="active"
+           (click)="loginGoogle()"
+           class="mdl-navigation__link"
+           aria-hidden="true">
+          Login
+        </a>
       </nav>
     </mdl-layout-drawer>
   </mdl-layout-content>
 </mdl-layout>
-
-<mdl-layout style="top: 5em;">
-  <mdl-layout-content>
-    <div class="mdl-grid">
-      <div class="mdl-cell mdl-cell--6-col">
-        <subscribe></subscribe>
-        <p></p>
-        <publish></publish>
-      </div>
-      <div class="mdl-cell mdl-cell--6-col">
-        <watch-mqtt-metadata></watch-mqtt-metadata>
-        <p></p>
-        <watch-mqtt-dashboard></watch-mqtt-dashboard>
-      </div>
-    </div>
-  </mdl-layout-content>
-</mdl-layout>
+<router-outlet><router-outlet>
