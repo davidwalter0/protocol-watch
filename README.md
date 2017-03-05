@@ -14,6 +14,8 @@ Original project info:
 
 #### angular2 / mqtt / protocol buffer monitor application
 
+![UI|Material Tabbed / Routed](images/material-design-lite-tabbed-routed.png "branch: material-design-lite-routed")
+
 ![UI|Material Card](images/material-design-lite-screenshot.png "branch: material-design-lite")
 
 ![UI|Bootstrap Cards](images/screenshot.png "branch: cards-with-services" )
