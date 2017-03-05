@@ -28,8 +28,8 @@ export class AuthGuard implements CanActivate {
           console.log('canActivate::AuthGuard::',
             JSON.stringify(this.route.data),
             JSON.stringify(this.route.params));
-          this.router.navigate(['log-in-required'], { skipLocationChange: true });
           this.authenticated = false;
+          this.router.navigate(['/logged-out']);
         } else {
           console.log('canActivate::AuthGuard::authenticated');
           console.log('canActivate::AuthGuard::',
@@ -38,5 +38,9 @@ export class AuthGuard implements CanActivate {
           this.authenticated = true;
         }
       });
+  }
+
+  authentication(authenticated) {
+    this.authenticated = authenticated;
   }
 }

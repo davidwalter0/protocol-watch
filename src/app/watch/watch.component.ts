@@ -2,6 +2,8 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AngularFire, AuthProviders, AuthMethods } from 'angularfire2';
 import { Title } from '@angular/platform-browser';
+import { flyInOutTrigger } from '../animations/flyInOutTrigger-animation';
+import { hostConfig } from '../animations/flyInOutTrigger-animation';
 
 import { AbstractComponent } from '../abstract.component';
 // import { flyInOutTrigger } from '../animations/flyInOutTrigger-animation';
@@ -9,14 +11,13 @@ import { AbstractComponent } from '../abstract.component';
 
 @Component({
   selector: 'watch',
-  // host: hostConfig,
-  // animations: [
-  //     flyInOutTrigger
-  // ],
   templateUrl: 'watch.component.html',
   styles: [
-    // 'material.indigo-light_blue.min.css',
-  ]
+  ],
+  host: hostConfig,
+  animations: [
+    flyInOutTrigger
+  ],
 })
 
 // export class WatchComponent extends AbstractComponent implements OnInit {

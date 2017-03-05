@@ -7,26 +7,27 @@
   document.querySelector('.mdl-layout-drawer').addEventListener('click', close);
 </script>
 
-<mdl-layout
-   mdl-layout-fixed-header
-   mdl-layout-mode="scroll"
-   >
+<mdl-layout mdl-layout-fixed-header>
   <mdl-layout-header>
     <mdl-layout-header-row>
       <mdl-layout-title>Site Title</mdl-layout-title>
       <div class="mdl-layout-spacer"></div>
       <nav class="mdl-navigation">
-        <a routerLinkActive="active"
+        <a routerLinkActive="active" 
+           skipLocationChange="true"
            class="mdl-navigation__link" routerLink="">Home</a>
-        <a skipLocationChange="true"
+        <a
+           skipLocationChange="true"
            *ngIf="authorized()"
-           routerLinkActive="active"
+           routerLinkActive="active" 
+           routerLink="/logged-out"
            (click)="logout()"
            class="mdl-navigation__link"
            aria-hidden="true">
           Logout
         </a>
-        <a skipLocationChange="true"
+        <a
+           skipLocationChange="true"
            *ngIf="!authorized()"
            routerLinkActive="active"
            (click)="loginGoogle()"
@@ -40,14 +41,17 @@
   </mdl-layout-header>
 
   <mdl-layout-drawer class="sliding-drawer"
-     mdl-cell--hide-desktop
-     >
+                     mdl-cell--hide-desktop
+                     >
     <mdl-layout-title>Site Title</mdl-layout-title>
     <nav class="mdl-navigation">
-      <a routerLinkActive="active"
+      <a
+         skipLocationChange="true"
+         routerLinkActive="active"
          class="mdl-navigation__link" routerLink="">Home</a>
       <a skipLocationChange="true"
          *ngIf="authorized()"
+         routerLink="/logged-out"
          routerLinkActive="active"
          (click)="logout()"
          class="mdl-navigation__link"
@@ -57,6 +61,7 @@
       <a skipLocationChange="true"
          *ngIf="!authorized()"
          routerLinkActive="active"
+         routerLink="/logged-out"
          (click)="loginGoogle()"
          class="mdl-navigation__link"
          aria-hidden="true">
@@ -74,13 +79,16 @@
         <a routerLinkActive="active"
            class="mdl-navigation__link" routerLink="">Home</a>
         <a skipLocationChange="true"
+         *ngIf="authorized()"
            routerLinkActive="active"
+           routerLink="/logged-out"
            (click)="logout()"
            class="mdl-navigation__link"
            aria-hidden="true">
           Logout
         </a>
         <a skipLocationChange="true"
+         *ngIf="!authorized()"
            routerLinkActive="active"
            (click)="loginGoogle()"
            class="mdl-navigation__link"

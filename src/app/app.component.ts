@@ -3,13 +3,18 @@ import { ActivatedRoute, Router, Routes } from '@angular/router';
 import { AngularFire, AuthProviders, AuthMethods } from 'angularfire2';
 import { Title } from '@angular/platform-browser';
 import { AuthGuard } from './auth.service';
+import { flyInOutTrigger } from './animations/flyInOutTrigger-animation';
+import { hostConfig } from './animations/flyInOutTrigger-animation';
 
 @Component({
   selector: 'app-root',
   templateUrl: 'app.component.html',
+  host: hostConfig,
+  animations: [
+    flyInOutTrigger
+  ],
 })
 export class AppComponent {
-  authenticated: boolean = false;
   error: any;
   title: string = "Site Title";
 
@@ -23,27 +28,22 @@ export class AppComponent {
 
   logout() {
     this.angularFire.auth.logout();
-    this.authenticated = false;
+    this.authService.authentication(false);
     console.log('logged out');
-    this.router.navigate(['/logged-out'], { skipLocationChange: true });
+    this.router.navigate(['/logged-out']);
   }
 
   loginGoogle() {
-    // this.angularFire.auth.login({
-    //   provider: AuthProviders.Google,
-    //   method: AuthMethods.Redirect,
-    // }).then(
-
     this.angularFire.auth.login({
       provider: AuthProviders.Google,
       method: AuthMethods.Popup
     }).then(
       (success) => {
-        this.authenticated = true;
-        this.router.navigate(['/'], { skipLocationChange: true });
+        this.authService.authentication(true);
+        this.router.navigate(['']);
       })
       .catch((err) => {
-        this.authenticated = false;
+        this.authService.authentication(false);
         this.error = err;
       });
   }

@@ -9,7 +9,8 @@ import { PubSubComponent } from './pubsub/pubsub.component';
 import { AuthGuard } from './auth.service';
 
 export const router: Routes = [
-  { path: '', redirectTo: 'pubsub-watch', pathMatch: 'full', canActivate: [AuthGuard] },
+  // { path: '', redirectTo: 'pubsub-watch', pathMatch: 'full', canActivate: [AuthGuard] },
+  { path: '', component: PubSubWatchComponent, canActivate: [AuthGuard] },
   { path: 'pubsub-watch', component: PubSubWatchComponent, canActivate: [AuthGuard] },
   { path: 'pubsub', component: PubSubComponent, canActivate: [AuthGuard] },
   { path: 'watch', component: WatchComponent, canActivate: [AuthGuard] },
