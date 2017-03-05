@@ -10,7 +10,7 @@
 <mdl-layout mdl-layout-fixed-header>
   <mdl-layout-header>
     <mdl-layout-header-row>
-      <mdl-layout-title>Site Title</mdl-layout-title>
+      <mdl-layout-title>{{ title }}</mdl-layout-title>
       <div class="mdl-layout-spacer"></div>
       <nav class="mdl-navigation">
         <a routerLinkActive="active" 
@@ -43,7 +43,7 @@
   <mdl-layout-drawer class="sliding-drawer"
                      mdl-cell--hide-desktop
                      >
-    <mdl-layout-title>Site Title</mdl-layout-title>
+    <mdl-layout-title>{{ title }}</mdl-layout-title>
     <nav class="mdl-navigation">
       <a
          skipLocationChange="true"
@@ -74,9 +74,11 @@
     <mdl-layout-drawer
        mdl-cell--view-desktop
        style="top: 3em;">
-      <mdl-layout-title>Site Title</mdl-layout-title>
+      <mdl-layout-title>{{ title }}</mdl-layout-title>
       <nav class="mdl-navigation">
-        <a routerLinkActive="active"
+        <a
+           skipLocationChange="true"
+           routerLinkActive="active"
            class="mdl-navigation__link" routerLink="">Home</a>
         <a skipLocationChange="true"
          *ngIf="authorized()"

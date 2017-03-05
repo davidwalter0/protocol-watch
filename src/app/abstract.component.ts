@@ -6,9 +6,9 @@ export class AbstractComponent {
 
   private sub: any;
 
-  private windowTitle = 'angular2-mdl';
+  private windowTitle = 'Angular MDL / Protocol Buffers';
 
-  constructor(private router: Router, private route: ActivatedRoute, private titleService: Title) {
+  constructor(public router: Router, public route: ActivatedRoute, public titleService: Title) {
     console.log('constructor::AbstractComponent');
   }
 
