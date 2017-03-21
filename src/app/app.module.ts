@@ -27,6 +27,8 @@ import { MdlSelectModule } from '@angular2-mdl-ext/select';
 import { firebaseConfigCredentials } from './firebase.credentials';
 import { AuthGuard } from './auth.service';
 import { EmptyComponent } from './empty/empty.component';
+import { ProtobufDefComponent } from './protobuf-def/protobuf-def.component';
+import { ProtobufDefService } from './protobuf-def/protobuf-def.service';
 
 @NgModule({
   declarations: [
@@ -39,6 +41,7 @@ import { EmptyComponent } from './empty/empty.component';
     WatchMqttDashboardComponent,
     WatchMqttMetadataComponent,
     EmptyComponent,
+    ProtobufDefComponent,
   ],
   imports: [
     BrowserModule,
@@ -57,6 +60,7 @@ import { EmptyComponent } from './empty/empty.component';
     routes,
   ],
   providers: [
+    ProtobufDefService,
     WatchMqttService,
     AuthGuard,
     Location, { provide: LocationStrategy, useClass: PathLocationStrategy },

@@ -1,5 +1,4 @@
 <mdl-card
-   style="top:3em;"
    mdl-shadow="3"
    class="mdl-color--indigo-50 mdl-cell--12-col" >
   <div class="mdl-card__title mdl--expand">
@@ -23,7 +22,7 @@
          [disabled]="(watchMqttService.state() | async) != MqttConnectionState.CONNECTED || ! watchMqttService.subscribed" 
          class="form-control"
          floating-label
-         label="Text input"
+         label="Text input" rows="5"
          name="text" type="text"
          placeholder="text"
          required

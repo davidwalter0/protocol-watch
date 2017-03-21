@@ -1,5 +1,4 @@
 <mdl-card
-   style="top:3em;"
    mdl-shadow="3"
    class="mdl-color--indigo-50 mdl-cell--12-col" >
   <div *ngIf="(watchMqttService.state() | async) === MqttConnectionState.CONNECTED">

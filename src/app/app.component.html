@@ -4,12 +4,12 @@
     d.MaterialLayout.toggleDrawer();
   }
 
-  document.querySelector('.mdl-layout-drawer').addEventListener('click', close);
+  document.querySelector('.').addEventListener('click', close);
 </script>
 
-<mdl-layout mdl-layout-fixed-header>
-  <mdl-layout-header>
-    <mdl-layout-header-row>
+<div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+  <header class="mdl-layout__header">
+    <div class="mdl-layout__header-row">
       <mdl-layout-title>{{ title }}</mdl-layout-title>
       <div class="mdl-layout-spacer"></div>
       <nav class="mdl-navigation">
@@ -36,14 +36,10 @@
           Login
         </a>
       </nav>
-    </mdl-layout-header-row>
-
-  </mdl-layout-header>
-
-  <mdl-layout-drawer class="sliding-drawer"
-                     mdl-cell--hide-desktop
-                     >
-    <mdl-layout-title>{{ title }}</mdl-layout-title>
+    </div>
+  </header>
+  <div class="mdl-layout__drawer mdl-cell--hide-desktop" >
+    <span class="mdl-layout-title">{{ title }}</span>
     <nav class="mdl-navigation">
       <a
          skipLocationChange="true"
@@ -69,36 +65,88 @@
       </a>
 
     </nav>
-  </mdl-layout-drawer>
-  <mdl-layout-content>
-    <mdl-layout-drawer
+  </div>
+
+  <div class="sliding-drawer mdl-layout__drawer"
        mdl-cell--view-desktop
-       style="top: 3em;">
-      <mdl-layout-title>{{ title }}</mdl-layout-title>
-      <nav class="mdl-navigation">
-        <a
-           skipLocationChange="true"
-           routerLinkActive="active"
-           class="mdl-navigation__link" routerLink="">Home</a>
-        <a skipLocationChange="true"
+       style="top: 4em;">
+    <span class="mdl-layout-title">{{ title }}</span>
+    <nav class="mdl-navigation">
+      <a
+         skipLocationChange="true"
+         routerLinkActive="active"
+         class="mdl-navigation__link" routerLink="">Home</a>
+      <a skipLocationChange="true"
          *ngIf="authorized()"
-           routerLinkActive="active"
-           routerLink="/logged-out"
-           (click)="logout()"
-           class="mdl-navigation__link"
-           aria-hidden="true">
-          Logout
-        </a>
-        <a skipLocationChange="true"
+         routerLinkActive="active"
+         routerLink="/logged-out"
+         (click)="logout()"
+         class="mdl-navigation__link"
+         aria-hidden="true">
+        Logout
+      </a>
+      <a skipLocationChange="true"
          *ngIf="!authorized()"
-           routerLinkActive="active"
-           (click)="loginGoogle()"
-           class="mdl-navigation__link"
-           aria-hidden="true">
-          Login
-        </a>
-      </nav>
-    </mdl-layout-drawer>
-  </mdl-layout-content>
-</mdl-layout>
-<router-outlet><router-outlet>
+         routerLinkActive="active"
+         (click)="loginGoogle()"
+         class="mdl-navigation__link"
+         aria-hidden="true">
+        Login
+      </a>
+    </nav>
+  </div>
+  <main class="mdl-layout__content" style="height: 90%; width:100%;">
+    <router-outlet></router-outlet>
+  </main>
+  <!-- <footer  class="mdl-mini-footer mdl-color--primary mdl-layout--large-screen-only" style="z-index: 999;"> -->
+  <!--   <div class="mdl-mini-footer__left-section"> -->
+  <!--     <div class="mdl-logo"> -->
+  <!--       © Copyright Information -->
+  <!--     </div> -->
+  <!--     <ul class="mdl-mini-footer__link-list  mdl-color--primary"> -->
+  <!--       <li><a href="#">Help</a></li> -->
+  <!--       <li><a href="#">Privacy and Terms</a></li> -->
+  <!--       <li><a href="#">User Agreement</a></li> -->
+  <!--     </ul> -->
+  <!--   </div> -->
+  <!--   <div class="mdl-mini-footer__right-section  mdl-color--primary"> -->
+  <!--     <button type="submit" style="color: #fff"class="mdl-button mdl-button--raised mdl-mini-footer__social-btn mdl-color--primary" mdl-ripple>No/Op</button> -->
+  <!--     <\!-- <button type="submit" style="color: #fff"class="mdl-button mdl-button--raised mdl-mini-footer__social-btn mdl-color--primary" mdl-ripple>2</button> -\-> -->
+  <!--     <\!-- <button type="submit" style="color: #fff"class="mdl-button mdl-button--raised mdl-mini-footer__social-btn mdl-color--primary" mdl-ripple>3</button> -\-> -->
+  <!--   </div> -->
+  <!-- </footer> -->
+</div>
+
+<!-- <style> -->
+<!-- footer { -->
+<!--   position: absolute; -->
+<!--   right: 0; -->
+<!--   height: 2em; -->
+<!--   bottom: 2em; -->
+<!--   margin-bottom: -2em; -->
+<!--   left: 0; -->
+<!--   padding: 1em; -->
+<!--   z-index: 999; -->
+<!-- } -->
+<!-- </style> -->
+
+
+<!--
+
+
+http://ergoemacs.org/emacs/emacs_n_unicode.html
+http://ergoemacs.org/emacs/unicode_basics.html
+http://xahlee.info/comp/unicode_index.html
+
+;; set keys to insert math symbol
+(define-key key-translation-map (kbd "<f9> p") (kbd "φ"))
+(define-key key-translation-map (kbd "<f9> x") (kbd "ξ"))
+(define-key key-translation-map (kbd "<f9> i") (kbd "∞"))
+(define-key key-translation-map (kbd "<f9> <right>") (kbd "→"))
+
+Inserting a copyright, registered or trademark symbol in any Windows applications
+For the Copyright symbol (©) Hold the Alt key down and type 0169.
+For the Trademark symbol (TM) Hold the Alt key down and type 0153.
+For the Registered symbol (®) Hold the Alt key down and type 0174.
+
+-->
